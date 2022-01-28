@@ -7,17 +7,42 @@
  */
 
 export class Weather {
-    #jasonWeather = {}
+    // This class interacts with the weather api.
+    _jsonWeather = {};
+    _key = "";
 
-    upddateWeather(city) {
-        var response = {}
-        // read all entities
-        const fetchPromise = fetch("https://api.openweathermap.org/data/2.5/weather?q=Nepean&appid=bf4258670ef60d98bcc1bff161cbff76")
+    constructor(apiKey) {
+        // Sets the api key.
+        this._key = apiKey
+    }
 
-        this.#jasonWeather = fetchPromise.then((response) => {
-            return response.json()
+    updateWeather(city) {
+        // This method gets the json file from the api.
+        var response = {};
+        const link = "https://api.openweathermap.org/data/2.5/weather?q=" + city + "&appid=" + this._key;
+
+        const fetchPromise = fetch(link);
+
+        fetchPromise.then((response) => {
+            return response.json();
         }).then((weather) => {
-            return weather;
+            this._jsonWeather = weather;
         })
+    }
+
+    getWeather() {
+        return this._jsonWeather.weather[0].description;
+    }
+
+    getTemperature() {
+        return Math.round((this._jsonWeather.main.temp - 273.15) * 10)/ 10;
+    }
+
+    getFeelsLike() {
+        return Math.round((this._jsonWeather.main.feels_like - 273.15) * 10)/ 10;
+    }
+
+    getHumidity() {
+        return this._jsonWeather.main.humidity;
     }
 }

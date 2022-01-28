@@ -1,17 +1,16 @@
 import logo from './logo.svg';
 import './App.css';
-import { Weather } from './weather.js';
-
-const myWeather = new Weather;
+import { WeatherFrontEnd } from './components/weatherFrontEnd.jsx';
 
 function App() {
   return (
     <div className="App">
       <header className="App-header">
-        <p>
-            Hello, World!
-        </p>
+          <h3>Weather App</h3>
       </header>
+      <body>
+        <WeatherFrontEnd />
+      </body>
     </div>
   );
 }
