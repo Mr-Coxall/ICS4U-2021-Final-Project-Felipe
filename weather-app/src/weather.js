@@ -24,10 +24,18 @@ export class Weather {
         const fetchPromise = fetch(link);
 
         fetchPromise.then((response) => {
-            return response.json();
+                return response.json();
         }).then((weather) => {
-            this._jsonWeather = weather;
+                this._jsonWeather = weather;
         })
+    }
+
+    isCity() {
+        if (this._jsonWeather.cod === 200) {
+            return true;
+        } else {
+            return false;
+        }
     }
 
     getWeather() {

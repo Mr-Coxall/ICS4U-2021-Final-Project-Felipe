@@ -46,13 +46,15 @@
 
 table {
   border-collapse: collapse;
-  width: 100%;
+  align-items: center;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 th,
 td {
   border: 1px solid #ffffff;
-  text-align: left;
+  text-align: center;
   padding: 8px;
   font-size: 32px;
 }
@@ -66,8 +68,11 @@ td {
 }
 
 form {
-  display: flex;
   gap: 5px;
+  align-items: center;
+  margin-left: auto;
+  margin-right: auto;
+  border-collapse: collapse;
 }
 
 form td:last-child {
@@ -78,3 +83,4 @@ form td:last-child {
 form * {
   font-size: 28px;
 }
+
