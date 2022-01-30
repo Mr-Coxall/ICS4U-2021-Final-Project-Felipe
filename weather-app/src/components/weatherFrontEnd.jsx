@@ -21,7 +21,7 @@ export class WeatherFrontEnd extends React.Component {
         humidity: 0,
         max_temp: 0,
         min_temp: 0,
-        background_image: { uri: "/a_few_clouds.jpeg" }
+        image: "https://openweathermap.org/img/wn/10d@2x.png"
     };
 
     handleSubmit = (event) => {
@@ -31,14 +31,14 @@ export class WeatherFrontEnd extends React.Component {
         myWeather.updateWeather(this.inputNode.value)
 
         setTimeout(() => {
-            console.log(myWeather.isCity())
             if (myWeather.isCity()) {
                 this.setState({temp: myWeather.getTemperature()})
                 this.setState({weather: myWeather.getWeather()})
                 this.setState({humidity: myWeather.getHumidity()})
                 this.setState({feels_like: myWeather.getFeelsLike()})
-                this.setState({max_temp: myWeather.getFeelsLike()})
-                this.setState({min_temp: myWeather.getFeelsLike()})
+                this.setState({max_temp: myWeather.getMaxTemp()})
+                this.setState({min_temp: myWeather.getMinTemp()})
+                this.setState({image: "https://openweathermap.org/img/wn/" + myWeather.getIcon() + "@2x.png"})
             } else {
                 this.setState({city: "Error, it is not a city."})
             }
@@ -62,6 +62,7 @@ export class WeatherFrontEnd extends React.Component {
                 <button type="Submit" onClick={this.handleSubmit}>Submit</button>
             </form>
             <h1>{this.state.city}</h1>
+              <img src={ this.state.image } alt="Wheather Icon." />
             <table>
                 <thead>
                     <tr>
@@ -84,8 +85,8 @@ export class WeatherFrontEnd extends React.Component {
             <table>
                 <thead>
                     <tr>
-                        <th>MAX</th>
-                        <th>MIN</th>
+                        <th>MAX Temp</th>
+                        <th>MIN Temp</th>
                     </tr>
                 </thead>
                 <tbody>

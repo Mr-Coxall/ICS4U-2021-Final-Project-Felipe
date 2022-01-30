@@ -53,4 +53,16 @@ export class Weather {
     getHumidity() {
         return this._jsonWeather.main.humidity;
     }
+
+    getMaxTemp() {
+        return Math.round((this._jsonWeather.main.temp_max - 273.15) * 10)/ 10;
+    }
+
+    getMinTemp() {
+        return Math.round((this._jsonWeather.main.temp_min - 273.15) * 10)/ 10;
+    }
+
+    getIcon() {
+        return this._jsonWeather.weather[0].icon;
+    }
 }
