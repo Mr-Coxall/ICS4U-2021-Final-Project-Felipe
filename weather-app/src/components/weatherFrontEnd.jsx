@@ -7,12 +7,16 @@
  */
 
 import React from 'react';
+// Weather is were we get the information from.
 import { Weather } from '../weather.js';
 import aFewClounds from '../a_few_clouds.jpeg'
 
 const myWeather = new Weather("bf4258670ef60d98bcc1bff161cbff76");
 
 export class WeatherFrontEnd extends React.Component {
+    // This class is the code for the for the app.
+
+    // State is were the dinamic info is stored.
     state = {
         city: "",
         temp: 0,
@@ -25,12 +29,14 @@ export class WeatherFrontEnd extends React.Component {
     };
 
     handleSubmit = (event) => {
+        // It runs this code when someone press the button.
         event.preventDefault()
         this.setState({city: this.inputNode.value})
 
         myWeather.updateWeather(this.inputNode.value)
 
         setTimeout(() => {
+            // Timeout to wait for the api reponse.
             if (myWeather.isCity()) {
                 this.setState({temp: myWeather.getTemperature()})
                 this.setState({weather: myWeather.getWeather()})
@@ -45,6 +51,7 @@ export class WeatherFrontEnd extends React.Component {
         }, 2000);
     }
 
+    // Render is where the xml code is.
   render() {
       return (
           <div>

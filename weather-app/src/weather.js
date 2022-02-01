@@ -27,10 +27,11 @@ export class Weather {
                 return response.json();
         }).then((weather) => {
                 this._jsonWeather = weather;
-        })
+        });
     }
 
     isCity() {
+        // It checks to if the input was an actuall city.
         if (this._jsonWeather.cod === 200) {
             return true;
         } else {
@@ -39,30 +40,37 @@ export class Weather {
     }
 
     getWeather() {
+        // Returns the weather.
         return this._jsonWeather.weather[0].description;
     }
 
     getTemperature() {
+        // Returns the temperature.
         return Math.round((this._jsonWeather.main.temp - 273.15) * 10)/ 10;
     }
 
     getFeelsLike() {
+        // Returns the feels like.
         return Math.round((this._jsonWeather.main.feels_like - 273.15) * 10)/ 10;
     }
 
     getHumidity() {
+        // Returns the Humidity.
         return this._jsonWeather.main.humidity;
     }
 
     getMaxTemp() {
+        // Returns the max temp.
         return Math.round((this._jsonWeather.main.temp_max - 273.15) * 10)/ 10;
     }
 
     getMinTemp() {
+        // Returns the min temp.
         return Math.round((this._jsonWeather.main.temp_min - 273.15) * 10)/ 10;
     }
 
     getIcon() {
+        // Returns the icon id.
         return this._jsonWeather.weather[0].icon;
     }
 }
